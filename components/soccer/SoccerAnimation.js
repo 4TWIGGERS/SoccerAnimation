@@ -39,13 +39,13 @@ const SoccerAnimation = () => {
         </View>
         <Image
           style={styles.image}
-          source={require("../../assets/door.png")}
+          source={require("../../assets/door1.png")}
         ></Image>
         {cards.map((card, index) => {
           return (
             <SoccerBalls
               setGoalScore={setGoalScore}
-              card={require("../../assets/ball.png")}
+              card={require("../../assets/ball1.png")}
               index={index}
               goalScore={goalScore}
               isToggled={isToggled}
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: "green",
   },
   scoreCont: { position: "absolute", top: 40, right: 40 },
-  score: { fontSize: 26, fontWeight: "500", color: "white" },
+  score: { fontSize: 34, fontWeight: "500", color: "white" },
   overlay: {
     position: "absolute",
     justifyContent: "center",
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: width * 0.35,
     position: "absolute",
-    top: 30,
+    top: 40,
   },
 });
 

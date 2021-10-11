@@ -12,7 +12,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { withBouncing } from "react-native-redash";
 const { width, height } = Dimensions.get("window");
-const BALL_HEIGHT = 80;
+const BALL_HEIGHT = 90;
 
 const SoccerBalls = ({ index, card, goalScore, setGoalScore }) => {
   const translateX = useSharedValue(0);
@@ -22,11 +22,12 @@ const SoccerBalls = ({ index, card, goalScore, setGoalScore }) => {
   useDerivedValue(() => {
     if (
       translateY.value > -height - 300 &&
-      translateY.value < -height + 70 &&
-      translateX.value > -60 &&
-      translateX.value < 50
+      translateY.value < -height + 160 &&
+      translateX.value > -50 &&
+      translateX.value < 60
     ) {
       translateY.value = withSpring(0);
+
       runOnJS(setGoalScore)(goalScore + 1);
     }
   });
@@ -49,8 +50,8 @@ const SoccerBalls = ({ index, card, goalScore, setGoalScore }) => {
           },
           () => {}
         ),
-        -height + 60,
-        80
+        -height + 130,
+        100
       );
 
       translateX.value = withBouncing(
@@ -60,8 +61,8 @@ const SoccerBalls = ({ index, card, goalScore, setGoalScore }) => {
           },
           () => {}
         ),
-        -width / 2 + 30,
-        width / 2 - 30
+        -width / 2 + 40,
+        width / 2 - 40
       );
     },
   });
