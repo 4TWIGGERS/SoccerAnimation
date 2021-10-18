@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Image, StyleSheet, Dimensions } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
 import Animated, {
@@ -12,9 +12,9 @@ import Animated, {
 } from "react-native-reanimated";
 import { withBouncing } from "react-native-redash";
 const { width, height } = Dimensions.get("window");
-const BALL_HEIGHT = 90;
+const BALL_HEIGHT = 60;
 
-const SoccerBalls = ({ index, card, goalScore, setGoalScore }) => {
+const SoccerBall = ({ index, card, goalScore, setGoalScore }) => {
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
   const bottom = useSharedValue(30);
@@ -50,8 +50,8 @@ const SoccerBalls = ({ index, card, goalScore, setGoalScore }) => {
           },
           () => {}
         ),
-        -height + 130,
-        100
+        -height + BALL_HEIGHT / 2,
+        0
       );
 
       translateX.value = withBouncing(
@@ -61,8 +61,8 @@ const SoccerBalls = ({ index, card, goalScore, setGoalScore }) => {
           },
           () => {}
         ),
-        -width / 2 + 40,
-        width / 2 - 40
+        -width / 2 + BALL_HEIGHT / 2,
+        width / 2 - BALL_HEIGHT / 2
       );
     },
   });
@@ -83,7 +83,7 @@ const SoccerBalls = ({ index, card, goalScore, setGoalScore }) => {
   return (
     <PanGestureHandler onGestureEvent={gestureHandler}>
       <Animated.View key={index} style={[styles.overlay, style]}>
-        <Image resizeMode="contain" style={styles.cards} source={card} />
+        <Image resizeMode="cover" style={styles.cards} source={card} />
       </Animated.View>
     </PanGestureHandler>
   );
@@ -99,4 +99,4 @@ const styles = StyleSheet.create({
     borderRadius: BALL_HEIGHT,
   },
 });
-export default SoccerBalls;
+export default SoccerBall;

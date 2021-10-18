@@ -8,24 +8,18 @@ import {
   Image,
 } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
-import SoccerBalls from "./SoccerBalls";
+import SoccerBall from "./SoccerBall";
 
 const { width, height } = Dimensions.get("screen");
 const cards = [
-  require("../../assets/card1.png"),
-  require("../../assets/card2.png"),
-  require("../../assets/card3.png"),
+  require("../../assets/ball1.png"),
+  require("../../assets/ball1.png"),
+  require("../../assets/ball1.png"),
 ];
 
 const SoccerAnimation = () => {
-  const [toggle, setToggle] = useState(true);
   const [goalScore, setGoalScore] = useState(0);
-
   const isToggled = useSharedValue(0);
-
-  useEffect(() => {
-    isToggled.value = toggle ? 1 : 0;
-  }, [toggle]);
 
   return (
     <View style={styles.container}>
@@ -43,9 +37,9 @@ const SoccerAnimation = () => {
         ></Image>
         {cards.map((card, index) => {
           return (
-            <SoccerBalls
+            <SoccerBall
               setGoalScore={setGoalScore}
-              card={require("../../assets/ball1.png")}
+              card={card}
               index={index}
               goalScore={goalScore}
               isToggled={isToggled}
